@@ -1,19 +1,27 @@
 package ru.gb.practice_spring.entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "readers")
 @Data
 public class Reader {
 
-    private static long genId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    private final long id;
-
-    private final String name;
+    @Column(name = "reader_name")
+    private String name;
 
     public Reader(String name) {
-        id = genId++;
         this.name = name;
     }
+
 }
 

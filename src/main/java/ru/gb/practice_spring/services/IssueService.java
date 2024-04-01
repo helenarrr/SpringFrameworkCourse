@@ -1,7 +1,6 @@
 package ru.gb.practice_spring.services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 import ru.gb.practice_spring.controllers.issue.IssueRequest;
 import ru.gb.practice_spring.entity.Issue;
@@ -11,7 +10,7 @@ import ru.gb.practice_spring.repository.ReaderRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 
 // 2.1 В сервис IssueService добавить проверку, что у пользователя на руках нет книг.
@@ -25,40 +24,24 @@ public class IssueService {
     private final IssueRepository issueRepository;
     private final ReaderRepository readerRepository;
 
-
-    public Issue issueIfUserHasNoBooks(IssueRequest request) {
-        long readerId = request.getReaderId();
-        if (readerId != issueRepository.findById(readerId).getId() || request.getReturned_at() != null) {
-            return createIssue(request);
-        } else {
-            throw new IllegalArgumentException("У вас уже есть книга, новую взять нельзя!!!");
-        }
-    }
-
-
     public Issue createIssue(IssueRequest request) {
-        if (bookRepository.findById(request.getBookId()) == null) {
-            throw new NoSuchElementException("Не удалось найти книгу с id!" + request.getBookId());
-        }
-
-        if (readerRepository.findById(request.getReaderId()) == null) {
-            throw new NoSuchElementException("Не удалось найти читателя с id!" + request.getReaderId());
-        }
+        bookRepository.findById(request.getBookId());
+        readerRepository.findById(request.getReaderId());
 
         Issue issue = new Issue(request.getReaderId(), request.getBookId());
-        issueRepository.createIssue(issue);
+        issueRepository.save(issue);
 
         return issue;
     }
 
-    public Issue getIssue(long id) {
+    public Optional<Issue> getIssue(long id) {
         return issueRepository.findById(id);
     }
 
     public void setReturnedDateOfIssue(long issueId, String returned_at) {
         String dateTimeString = returned_at.split("\"")[3];
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
         LocalDateTime date = LocalDateTime.parse(dateTimeString, formatter);
-        issueRepository.save(issueId, date);
+        issueRepository.saveWithReturnedDate(issueId, date);
     }
 }

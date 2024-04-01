@@ -9,8 +9,7 @@ import ru.gb.practice_spring.repository.IssueRepository;
 import ru.gb.practice_spring.repository.ReaderRepository;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-
+import java.util.Optional;
 
 
 @Service
@@ -21,30 +20,28 @@ public class ReaderService {
 
     private final IssueRepository issueRepository;
 
-    public Reader getReader(long id) {
-        Reader reader = readerRepository.findById(id);
-        if (reader == null) {
-            throw new NoSuchElementException("Нет читателя с id " + id);
-        } else return reader;
+    public Optional<Reader> getReader(long id) {
+        return readerRepository.findById(id);
     }
 
     public Reader createReader(ReaderRequest readerRequest) {
-        readerRepository.getAllReaders().add(new Reader(readerRequest.getName()));
-        return new Reader(readerRequest.getName());
+        Reader newReader = new Reader(readerRequest.getName());
+        readerRepository.save(newReader);
+        return newReader;
     }
 
-    public Reader deleteReader(long id) {
-        Reader reader = readerRepository.findById(id);
-        if (reader == null) {
-            throw new NoSuchElementException("Нет читателя с id" + id);
-        } else readerRepository.deleteReaderById(id);
+    public Optional<Reader> deleteReader(long id) {
+        Optional<Reader> reader = readerRepository.findById(id);
+        readerRepository.deleteById(id);
         return reader;
     }
 
+    public List<Reader> getAll() {
+        return readerRepository.findAll();
+    }
+
     public List<Issue> getAllIssueOfReader(long readerId) {
-        Reader reader = readerRepository.findById(readerId);
-        if (reader == null) {
-            throw new NoSuchElementException("Нет читателя с id" + readerId);
-        } else return issueRepository.returnAllIssuesOfReader(readerId);
+        Optional<Reader> reader = readerRepository.findById(readerId);
+        return issueRepository.findIssuesByReaderId(readerId);
     }
 }

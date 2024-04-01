@@ -11,6 +11,7 @@ import ru.gb.practice_spring.services.BookService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 
 // GET /book/{id} - получить описание книги
@@ -24,16 +25,13 @@ public class BookController {
     @Autowired
     private BookService service;
 
-    @Autowired
-    private BookRepository repository;
-
     @GetMapping
     public List<Book> getAllBooks() {
-        return repository.getAllBooks();
+        return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public Book getBook(@PathVariable long id) {
+    public Optional<Book> getBook(@PathVariable long id) {
         return service.getBook(id);
     }
 
@@ -51,7 +49,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public Book deleteBook(@PathVariable long id) {
+    public Optional<Book> deleteBook(@PathVariable long id) {
         return service.deleteBook(id);
     }
 }
