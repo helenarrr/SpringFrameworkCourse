@@ -33,7 +33,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"readerId\" : 1,\r\n\"bookId\" : 1 }",
+					"raw": "{\"readerId\" :0,\r\n\"bookId\" : 0 }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -237,35 +237,6 @@
 			"response": []
 		},
 		{
-			"name": "check has books",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"readerId\" : \"0\",\r\n    \"bookId \" : \"0\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8081/issue/check",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"issue",
-						"check"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "get all issues of reader",
 			"request": {
 				"method": "GET",
@@ -293,7 +264,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"returned_at\" : \"2024-03-20T18:41:12.6832862\"}",
+					"raw": "{\"returned_at\" : }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -301,7 +272,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/issue/0",
+					"raw": "http://localhost:8081/issue/:issueId",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -309,7 +280,83 @@
 					"port": "8081",
 					"path": [
 						"issue",
-						"0"
+						":issueId"
+					],
+					"variable": [
+						{
+							"key": "issueId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"ela@mail.ru\",\r\n    \"password\" : \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbGFAbWFpbC5ydSIsImlhdCI6MTcxMjM0NDM5NCwiZXhwIjoxNzEyMzQ1ODM0fQ.9Sezn1AvKmWZxFlhYJ9dgvALlgwZQJm0uvuH3_HoquM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"ela@mail.ru\",\r\n    \"password\" : \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/auth/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"auth",
+						"authenticate"
 					]
 				}
 			},
