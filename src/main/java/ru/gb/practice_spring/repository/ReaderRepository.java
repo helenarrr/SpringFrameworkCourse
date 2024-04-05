@@ -1,37 +1,14 @@
 package ru.gb.practice_spring.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.gb.practice_spring.entity.Reader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Repository
-public class ReaderRepository {
+public interface ReaderRepository extends JpaRepository<Reader, Long> {
 
-    private List<Reader> listReaders = new ArrayList<>();
-
-    public ReaderRepository() {
-        listReaders.add(new Reader("Петя"));
-        listReaders.add(new Reader("Маша"));
-        listReaders.add(new Reader("Серега"));
-    }
-
-
-    public Reader findById(long id) {
-        return listReaders.stream().filter(e -> e.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
-
-    public List<Reader> getAllReaders() {
-        return listReaders;
-    }
-
-    public void deleteReaderById(long id) {
-        listReaders = listReaders
-                .stream()
-                .filter(e -> e.getId() != id)
-                .toList();
-    }
 }

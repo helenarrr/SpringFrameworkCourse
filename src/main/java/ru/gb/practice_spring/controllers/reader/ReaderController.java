@@ -15,11 +15,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.practice_spring.entity.Issue;
 import ru.gb.practice_spring.entity.Reader;
-import ru.gb.practice_spring.repository.ReaderRepository;
 import ru.gb.practice_spring.services.ReaderService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -28,19 +28,16 @@ public class ReaderController {
     @Autowired
     private ReaderService service;
 
-    @Autowired
-    private ReaderRepository repository;
-
-    @GetMapping
-    public List<Reader> getAllBooks() {
-        return repository.getAllReaders();
-    }
-
     @GetMapping("/{id}")
-    public Reader getReader(@PathVariable long id) {
+    public Optional<Reader> getReader(@PathVariable long id) {
         return service.getReader(id);
     }
 
+
+    @GetMapping()
+    public List<Reader> getReaders() {
+        return service.getAll();
+    }
     @PostMapping
     public ResponseEntity<Reader> createReader(@RequestBody ReaderRequest readerRequest) {
 
@@ -55,7 +52,7 @@ public class ReaderController {
     }
 
     @DeleteMapping("/{id}")
-    public Reader deleteReader(@PathVariable long id) {
+    public Optional<Reader> deleteReader(@PathVariable long id) {
         return service.deleteReader(id);
     }
 
