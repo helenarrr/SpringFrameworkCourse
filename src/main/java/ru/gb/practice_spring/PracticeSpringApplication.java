@@ -2,6 +2,9 @@ package ru.gb.practice_spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import ru.gb.practice_spring.aop.Go;
+import ru.gb.practice_spring.aop.Timer;
 
 /**
  * Домашнее задание:
@@ -11,16 +14,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 1.3 Заменить самописные репозитории на JPA-репозитории
  * Замечание: базу данных можно использовать любую (h2, mysql, postgres).
  */
-
-
-
-
-
 @SpringBootApplication
 public class PracticeSpringApplication {
+    public static void main(String[] args) {
+        ApplicationContext context = SpringApplication.run(PracticeSpringApplication.class, args);
+        Go go = context.getBean(Go.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(PracticeSpringApplication.class, args);
-	}
+        go.go();
 
+    }
 }
