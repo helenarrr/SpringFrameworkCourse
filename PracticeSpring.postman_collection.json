@@ -240,34 +240,6 @@
 			"response": []
 		},
 		{
-			"name": "add new request",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"readerId\": \"1\",\r\n    \"bookId\": \"1\"\r\n}\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8280/issue",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8280",
-					"path": [
-						"issue"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "get all issues of reader",
 			"request": {
 				"method": "GET",

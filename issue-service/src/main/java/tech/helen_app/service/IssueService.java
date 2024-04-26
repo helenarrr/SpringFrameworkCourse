@@ -47,13 +47,11 @@ public class IssueService {
             Issue issue = optionalIssue.get();
 
             Book book = bookProvider.findBookById(issue.getIdBook());
-            Author author = authorProvider.findAuthorById(book.getAuthor().getId());
             Reader reader = readerProvider.findReaderById(issue.getIdReader());
 
             return Optional.ofNullable(IssueDto.builder()
                     .id(id)
                     .book(book)
-                    .author(author)
                     .reader(reader)
                     .build());
         } else {

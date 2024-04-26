@@ -4,7 +4,6 @@ import org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalance
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import tech.helen_app.model.Author;
-import tech.helen_app.model.Book;
 
 @Component
 public class AuthorProvider {
