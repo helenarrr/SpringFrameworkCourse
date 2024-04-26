@@ -10,5 +10,4 @@ public class Book {
     private long id;
     private String name;
     private Author author;
-    private Reader reader;
 }

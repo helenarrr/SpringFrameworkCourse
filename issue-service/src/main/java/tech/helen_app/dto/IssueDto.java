@@ -11,7 +11,6 @@ import tech.helen_app.model.Reader;
 public class IssueDto {
     private long id;
     private Book book;
-    private Author author;
     private Reader reader;
 
 }
