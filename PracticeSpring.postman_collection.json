@@ -12,43 +12,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/book/1",
+					"raw": "http://localhost:8180/book/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8180",
 					"path": [
 						"book",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "post new issue",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"readerId\" :0,\r\n\"bookId\" : 0 }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8081/issue",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"issue"
+						"2"
 					]
 				}
 			},
@@ -61,7 +33,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\" : \"Энциклопедия\"}",
+					"raw": "{\r\n    \"name\": \"The Great Gatsby\",\r\n    \"authorRequest\": {\r\n        \"id\" : \"1\",\r\n        \"firstname\": \"kkkk\",\r\n        \"lastname\": \"fdfd\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -69,14 +41,70 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/book",
+					"raw": "http://localhost:8180/book",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8180",
 					"path": [
 						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post new author",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstname\" : \"kkkk\",\r\n\"lastname\": \"fdfd\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8180/author",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8180",
+					"path": [
+						"author"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post new issue",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"readerId\": \"1\",\r\n    \"bookId\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8280/issues",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"issues"
 					]
 				}
 			},
@@ -108,12 +136,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/book",
+					"raw": "http://localhost:8180/book",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8180",
 					"path": [
 						"book"
 					]
@@ -155,12 +183,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/reader",
+					"raw": "http://localhost:8380/reader",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8380",
 					"path": [
 						"reader"
 					]
@@ -191,18 +219,21 @@
 		{
 			"name": "get issue",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/issue/0",
+					"raw": "http://localhost:8280/issues/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8280",
 					"path": [
-						"issue",
-						"0"
+						"issues",
+						"1"
 					]
 				}
 			},
@@ -215,7 +246,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"readerId\": \"0\",\r\n    \"bookId \": \"1\"\r\n}",
+					"raw": "{\r\n    \"readerId\": \"1\",\r\n    \"bookId\": \"1\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -223,12 +254,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/issue",
+					"raw": "http://localhost:8280/issue",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8280",
 					"path": [
 						"issue"
 					]
@@ -264,7 +295,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"returned_at\" : }",
+					"raw": "{\"returned_at\" : \"2024-03-31T18:00:00.000\" }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -299,7 +330,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\" : \"ela@mail.ru\",\r\n    \"password\" : \"12345\"\r\n}",
+					"raw": "{\r\n    \"email\" : \"elena@mail.ru\",\r\n    \"password\" : \"12345\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -1,0 +1,14 @@
+server:
+  port: 8761
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/app_db
+    username: user
+    password: passwd
+
+eureka:
+  client:
+    register-with-eureka: false
+
+
