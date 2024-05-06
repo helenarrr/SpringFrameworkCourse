@@ -6,10 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.helen_app.entity.Author;
-import tech.helen_app.entity.Book;
 import tech.helen_app.request_model.AuthorRequest;
 import tech.helen_app.service.AuthorService;
-import tech.starter.Timer;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
