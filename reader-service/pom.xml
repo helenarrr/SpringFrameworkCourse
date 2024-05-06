@@ -24,6 +24,11 @@
             <artifactId>postgresql</artifactId>
             <version>42.7.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>timer-aspect-starter</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>

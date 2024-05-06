@@ -10,6 +10,7 @@ import tech.helen_app.request_model.AuthorRequest;
 import tech.helen_app.request_model.BookRequest;
 import tech.helen_app.entity.Book;
 import tech.helen_app.service.BookService;
+import tech.starter.Timer;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -28,6 +29,7 @@ public class BookController {
     private BookService service;
 
     @GetMapping
+    @Timer
     public List<Book> getAllBooks() {
         return service.findAll();
     }
