@@ -1,12 +1,10 @@
 package tech.helen_app.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.auth.AUTH;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tech.helen_app.request_model.AuthorRequest;
 import tech.helen_app.request_model.BookRequest;
 import tech.helen_app.entity.Book;
 import tech.helen_app.service.BookService;
@@ -22,16 +20,21 @@ import java.util.Optional;
 // * POST /book - создать книгу
 @Slf4j
 @RestController
-@RequestMapping(path = "book")
+@RequestMapping(path = "books")
 public class BookController {
 
     @Autowired
     private BookService service;
 
     @GetMapping
-    @Timer
-    public List<Book> getAllBooks() {
-        return service.findAll();
+//    @Timer
+    public ResponseEntity<List<Book>> getAllBooks() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(service.findAll());
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/{id}")
